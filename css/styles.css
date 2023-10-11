@@ -1,0 +1,129 @@
+* {
+    background-color: #353434;
+    color: aliceblue;
+    
+}
+
+header {
+    /* background: lightblue; */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+footer {
+    /* background: yellow; */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+main {
+    display:flex;
+    min-height: 600px;
+    flex-wrap: wrap;
+    /* border-color: aliceblue;
+    border-style: solid; */
+}
+.left-panel {
+    /* background: red; */
+    /* display: flex;  */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-basis: 19%;
+    min-width: 200px;
+    border-color: aliceblue;
+    border-style: solid;
+}
+.center-panel {
+    /* background: purple; */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-basis: 79%;
+    border-color: aliceblue;
+    border-style: solid;
+}
+.right-panel {
+    /* background: orange; */
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    flex-basis: 20%;
+    min-width: 200px;
+    
+}
+.sidebar-link {
+    margin: 10px;
+    font-size: large;
+
+}
+
+.board-container {
+    max-width: 640px;
+    max-height: 640px;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio  */
+    vertical-align: top;
+    overflow: hidden;
+    
+}
+
+.board {
+    display: inline-block;
+    position: absolute;
+    /* top: 10px; */
+    /* left: 0; */
+    width: 100%;
+    height: 100%;
+    /* padding-bottom: 100%; */
+}
+
+.dark-square {
+    fill:rgb(2, 187, 57);
+    stroke-width:1;
+    stroke:rgb(0,0,0);
+    
+}
+
+.light-square {
+    fill:rgb(245, 246, 211);
+    stroke-width:1;
+    stroke:rgb(0,0,0);
+    
+}
+
+@media (max-height:850) {
+    .board-container {
+        max-height: 448px;
+        max-width: 448px;
+    }
+}
+
+@media (max-width:1000px) {
+    .left-panel {
+        flex-basis: 100%;
+    }
+    .center-panel {
+        flex-basis: 100%;
+    }
+    .right-panel {
+        flex-basis: 100%;
+    }
+     
+}
+
+@media (max-width:500px) {
+    .left-panel {
+        flex-basis: 100%;
+    }
+    .center-panel {
+        flex-basis: 100%;
+    }
+    .right-panel {
+        display:none;
+    }
+}
