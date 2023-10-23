@@ -20,6 +20,7 @@ function generateBoard() {
     let board = buildNewSVGElement("svg", boardAttrArray);
     board.setAttribute("preserveAspectRatio", "xMinYMin meet")
     board.setAttribute("viewBox", "0 0 " + boardSize + " " + boardSize)
+    // buildNewSVGElement("image", [buildAttributeObject("xlink:href", "../assets/images/WK.png"), buildAttributeObject("x", "0"), buildAttributeObject("y", "0"), buildAttributeObject("width", "100"), buildAttributeObject("height", "100")]);
     
     //generate and add the squares
     let isLightSquare = true;
@@ -28,6 +29,8 @@ function generateBoard() {
             xPos = x * boardSize/numRowsAndCols;
             yPos = y * boardSize/numRowsAndCols;
             let newSqaure = generateSquare(xPos, yPos, isLightSquare, (x+1) + "" + (y+1));
+            // newSqaure.style.backgroundImage = "url(data:image/svg+xml;utf8," + svgCode + ")";
+   
             board.appendChild(newSqaure);
             isLightSquare = !isLightSquare
         }
@@ -62,6 +65,7 @@ function generateSquare(x, y, isLight, locationId) {
     let newSqaure = buildNewSVGElement("rect", attrArray);
     // newSqaure.setAttribute("viewBox", "0 0 " + boardSize/numRowsAndCols + " " + boardSize/numRowsAndCols) 
     // newSqaure.setAttribute("preserveAspectRatio", "xMidYMid meet")
+    
 
     // console.log(newSqaure);
     return newSqaure;
