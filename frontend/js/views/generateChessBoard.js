@@ -3,20 +3,27 @@ const numRowsAndCols = 8;
 const svgns = "http://www.w3.org/2000/svg";
 console.log(window.innerHeight);
 // console.log(window.innerWidth);
+// import { parseFen } from 'fentastic';
+// console.log(parseFen('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'));
+
+
 generateBoard()
 
 function generateBoard() {
-    //create the attribute objects for board
-    let boardClassAttr = buildAttributeObject("class", "board");
-    // let boardWidthAttr = buildAttributeObject("width", boardSize);
-    // let boardHeightAttr = buildAttributeObject("height", boardSize);
-    // let preserveAspectRatio = ("preserveAspectRatio", "xMinYMin meet")
-    // let viewBox = ("viewBox", "0 0 " + boardSize + " " + boardSize) 
-    // let boardAttrArray = [boardClassAttr, boardHeightAttr, boardWidthAttr];
-    // let boardAttrArray = [boardClassAttr, preserveAspectRatio, viewBox];
-    let boardAttrArray = [boardClassAttr];
+    
+    let board = buildBoard();
+    
+    // let boardContainer = buildNewElement("div", boardContainerAttrArray);
+    let boardContainer = document.getElementById('board-container');
+    // console.log(boardContainer); 
+    boardContainer.append(board);
 
-    // generate the board
+}
+
+function buildBoard() {
+    //create the attribute objects for board
+    let boardAttrArray = [buildAttributeObject("class", "board")];
+    // generate the board element
     let board = buildNewSVGElement("svg", boardAttrArray);
     board.setAttribute("preserveAspectRatio", "xMinYMin meet")
     board.setAttribute("viewBox", "0 0 " + boardSize + " " + boardSize)
@@ -37,24 +44,8 @@ function generateBoard() {
         }
         isLightSquare = !isLightSquare
     }
-    
-    // console.log(board);
-    // let boardContainerClassAttr = buildAttributeObject("class", "board-container");
-    // let boardContainerWidthAttr = buildAttributeObject("width", boardSize);
-    // let boardContainerHeightAttr = buildAttributeObject("height", boardSize);
-    // let boardContainerAttrArray = [boardContainerClassAttr, boardContainerHeightAttr, boardContainerWidthAttr];
-    // let boardContainerAttrArray = [boardContainerClassAttr];
-
-
-    // let boardContainer = buildNewElement("div", boardContainerAttrArray);
-    let boardContainer = document.getElementById('board-container');
-    console.log(boardContainer); 
-    boardContainer.append(board);
-
-    // let centerPanel = document.getElementsByClassName("center-panel")[0];
-    // centerPanel.append(boardContainer);
+    return board;
 }
-
 function generateSquare(x, y, isLight, locationId) {
     let xAttr = buildAttributeObject("x", x);
     let yAttr = buildAttributeObject("y", y);
