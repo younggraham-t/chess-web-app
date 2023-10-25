@@ -1,0 +1,125 @@
+.dark-square {
+    fill:rgb(2, 187, 57);
+    stroke-width:1;
+    stroke:rgb(0,0,0);
+    
+}
+
+.light-square {
+    fill:rgb(245, 246, 211);
+    stroke-width:1;
+    stroke:rgb(0,0,0);
+    /* fill-opacity: 0%; */
+    
+}
+
+.piece {
+
+    position: absolute; 
+    height: 12.5%;
+    width: 12.5%;
+    /* background-blend-mode: overlay; */
+    background-size: 100%;
+    background-color: transparent; 
+    top: 0px; 
+    left: 0px;
+    z-index: 1;
+}
+
+.bk {
+    background-image: url("../assets/images/BK.png");
+}
+.bq {
+    background-image: url("../assets/images/BQ.png");
+}
+.br {
+    
+    background-image: url("../assets/images/BR.png");
+}
+.bn {
+    background-image: url("../assets/images/BN.png");
+}
+.bb {
+    background-image: url("../assets/images/BB.png");
+}
+.bp {
+    background-image: url("../assets/images/BP.png");
+}
+
+
+.wk {
+    background-image: url("../assets/images/WK.png");
+}
+.wq {
+    background-image: url("../assets/images/WQ.png");
+}
+.wr {
+    
+    background-image: url("../assets/images/WR.png");
+}
+.wn {
+    background-image: url("../assets/images/WN.png");
+}
+.wb {
+    background-image: url("../assets/images/WB.png");
+}
+.wp {
+    background-image: url("../assets/images/WP.png");
+}
+
+
+
+.square-18 {
+    transform: translate(0%);
+}
+.square-28 {
+    transform: translateX(100%);
+}
+
+.square-38 {
+    transform: translateX(200%);
+}
+.square-48 {
+    transform: translateX(300%);
+}
+.square-58 {
+    transform: translate(400%);
+}
+.square-68 {
+    transform: translateX(500%);
+}
+
+.square-78 {
+    transform: translateX(600%);
+}
+.square-88 {
+    transform: translateX(700%);
+}
+
+
+.square-17 {
+    transform: translate(0%, 100%);
+}
+.square-27 {
+    transform: translate(100%, 100%);
+}
+
+.square-37 {
+    transform: translate(200%, 100%);
+}
+.square-47 {
+    transform: translate(300%, 100%);
+}
+.square-57 {
+    transform: translate(400%), 100%;
+}
+.square-67 {
+    transform: translate(500%, 100%);
+}
+
+.square-77 {
+    transform: translate(600%, 100%);
+}
+.square-87 {
+    transform: translate(700%, 100%);
+}

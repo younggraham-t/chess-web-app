@@ -20,6 +20,7 @@ function generateBoard() {
     let board = buildNewSVGElement("svg", boardAttrArray);
     board.setAttribute("preserveAspectRatio", "xMinYMin meet")
     board.setAttribute("viewBox", "0 0 " + boardSize + " " + boardSize)
+    // let board = buildNewElement("div", boardAttrArray);
     // buildNewSVGElement("image", [buildAttributeObject("xlink:href", "../assets/images/WK.png"), buildAttributeObject("x", "0"), buildAttributeObject("y", "0"), buildAttributeObject("width", "100"), buildAttributeObject("height", "100")]);
     
     //generate and add the squares
@@ -28,7 +29,7 @@ function generateBoard() {
         for (y=0; y<numRowsAndCols; y++) {
             xPos = x * boardSize/numRowsAndCols;
             yPos = y * boardSize/numRowsAndCols;
-            let newSqaure = generateSquare(xPos, yPos, isLightSquare, (x+1) + "" + (y+1));
+            let newSqaure = generateSquare(xPos, yPos, isLightSquare, "square-" + (x+1) + "" + (y+1));
             // newSqaure.style.backgroundImage = "url(data:image/svg+xml;utf8," + svgCode + ")";
    
             board.appendChild(newSqaure);
@@ -38,24 +39,27 @@ function generateBoard() {
     }
     
     // console.log(board);
-    let boardContainerClassAttr = buildAttributeObject("class", "board-container");
+    // let boardContainerClassAttr = buildAttributeObject("class", "board-container");
     // let boardContainerWidthAttr = buildAttributeObject("width", boardSize);
     // let boardContainerHeightAttr = buildAttributeObject("height", boardSize);
     // let boardContainerAttrArray = [boardContainerClassAttr, boardContainerHeightAttr, boardContainerWidthAttr];
-    let boardContainerAttrArray = [boardContainerClassAttr];
+    // let boardContainerAttrArray = [boardContainerClassAttr];
 
 
-    let boardContainer = buildNewElement("div", boardContainerAttrArray);
+    // let boardContainer = buildNewElement("div", boardContainerAttrArray);
+    let boardContainer = document.getElementById('board-container');
+    console.log(boardContainer); 
     boardContainer.append(board);
 
-    let centerPanel = document.getElementsByClassName("center-panel")[0];
-    centerPanel.append(boardContainer);
+    // let centerPanel = document.getElementsByClassName("center-panel")[0];
+    // centerPanel.append(boardContainer);
 }
 
 function generateSquare(x, y, isLight, locationId) {
     let xAttr = buildAttributeObject("x", x);
     let yAttr = buildAttributeObject("y", y);
     let classAttr = buildAttributeObject("class", isLight ? "light-square" : "dark-square");
+    // let classAttr = buildAttributeObject("class", isLight ? "piece br " + locationId : "piece wr " + locationId);
     let heightAttr = buildAttributeObject("height", boardSize/numRowsAndCols);
     let widthAttr = buildAttributeObject("width", boardSize/numRowsAndCols);
     let idAttr = buildAttributeObject("id", locationId) 
@@ -63,6 +67,8 @@ function generateSquare(x, y, isLight, locationId) {
     let attrArray = [xAttr, yAttr, classAttr, heightAttr, widthAttr, idAttr];
     // let attrArray = [xAttr, yAttr, classAttr, idAttr];
     let newSqaure = buildNewSVGElement("rect", attrArray);
+    // let newSqaure = buildNewElement("div", attrArray);
+     
     // newSqaure.setAttribute("viewBox", "0 0 " + boardSize/numRowsAndCols + " " + boardSize/numRowsAndCols) 
     // newSqaure.setAttribute("preserveAspectRatio", "xMidYMid meet")
     

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/pieceSquares.css">
     
     <title>Chess Page</title>
 
@@ -24,11 +25,17 @@
             </div>
         </nav>
         <div class="center-panel">
-            <script src="../js/generateChessBoard.js"></script>
-            <div class="piece br"></div> 
-            <!-- <div id="board-container">
-                <script src="../js/generateChessBoard.js"></script>
 
+            <div id="board-container"> 
+                <!-- <div class="board-background"></div> -->
+                <div class="piece br square-18"></div> 
+                <div class="piece wr square-28"></div>
+                <div class="piece br square-38"></div> 
+                <div class="piece wr square-48"></div>
+                <div class="piece wk square-77"></div>
+
+            </div>
+            <script src="../js/generateChessBoard.js"></script>
                 <!-- this is a proof of concept I will actually generate the board with javascript as above  -->
                 <!-- <svg class="board" width="640" height="640">
                      
