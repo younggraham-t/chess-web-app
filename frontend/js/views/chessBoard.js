@@ -2,6 +2,8 @@ const boardSize = window.innerHeight > 850 ? 640 : 488; //640 (divides evenly by
 const numRowsAndCols = 8;
 const svgns = "http://www.w3.org/2000/svg";
 
+
+//eventually this will come from the backend
 const startingPositionFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
 // console.log(window.innerHeight);
 // console.log(window.innerWidth);
@@ -13,6 +15,7 @@ generatePosition(startingPositionFen);
 
 
 let selectedPiece = null;
+let previousMoveLocations = [];
 
 function generateBoard() {
     
@@ -101,28 +104,39 @@ the class list for a square should look as follows:
 */
 function handleClickOnValidMove(square) {
     if (selectedPiece == null) { //TODO if piece cant move there removeHoverSquare also
-        removeHoverSquare();
+        removeHoverSquare(false);
         return;
     }
+    removeHoverSquare(true);
     let selectedPieceClassList = selectedPiece.classList;
     //update the empty square with the info from selectedPiece
     square.classList.replace(square.classList[0], "piece"); //make sure the first class is piece
     square.classList.replace(square.classList[1], selectedPieceClassList[1]); //replace the second class with the selected piece's pieceName
-
+    square.classList.add("hover-square");
+    
     //update selectedPiece to be empty
     selectedPieceClassList.replace(selectedPieceClassList[1], "empty");
     selectedPieceClassList.replace("piece", "blank");
-    console.log(selectedPiece.classList);
+    selectedPieceClassList.add("hover-square");
+    // console.log(selectedPiece.classList);
+
+    previousMoveLocations.push(square);
+    previousMoveLocations.push(selectedPiece);
     selectedPiece = null;
-    removeHoverSquare();
+    removeHoverSquare(false);
 }
 
 function handleClickOnPiece(square) {
     if (selectedPiece != null) {
+        if (square === selectedPiece) {
+            selectedPiece.classList.remove("hover-square");
+            selectedPiece = null;
+            return;
+        }
         // check if the 1st character of the 2nd class is the same for both pieces in which case they are the same color
         if (selectedPiece.classList[1][0] === square.classList[1][0]) {
             // remove previous hover squares
-            removeHoverSquare();
+            removeHoverSquare(false);
             //add new hover square 
             selectedPiece = square;
             square.classList.add("hover-square");
@@ -134,19 +148,27 @@ function handleClickOnPiece(square) {
         }
     }
     // remove previous hover squares
-    removeHoverSquare();
+    removeHoverSquare(false);
     //add new hover square
     selectedPiece = square;
     square.classList.add("hover-square");
 }
 
-function removeHoverSquare() {
+function removeHoverSquare(removeLastMove) {
     hoverSquares = document.querySelectorAll(".hover-square");
     if (hoverSquares.length > 0) {
-        // console.log(hoverSquares);
         for (hoverSquare of hoverSquares) {
-            // console.log(hoverSquare);
-            hoverSquare.classList.remove("hover-square");
+            //remove all hover-squares
+            if (removeLastMove) {
+                hoverSquare.classList.remove("hover-square");
+                previousMoveLocations = [];
+            }
+            //only remove the hover square that highlights the currently selected piece
+            else {
+                if (selectedPiece === hoverSquare) {
+                    hoverSquare.classList.remove("hover-square");
+                }
+            }
         }
     }
 }
