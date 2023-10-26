@@ -30,7 +30,7 @@
 }
 
 .hover-square {
-    background-color: rgb(219, 90, 47);
+    background-color: rgba(219, 90, 47, 0.6);
 }
 
 .bk {
@@ -76,6 +76,20 @@
 
 
 
+.empty {
+
+    position: absolute; 
+    height: 12.5%;
+    width: 12.5%;
+    /* background-blend-mode: overlay; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-size: 90%; */
+    background-color: transparent; 
+    top: 0px; 
+    left: 0px;
+    z-index: 1;
+}
 .square-18 {
     transform: translate(0%);
 }

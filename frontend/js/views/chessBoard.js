@@ -10,8 +10,10 @@ const startingPositionFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq 
 
 
 generateBoard()
-// generatePosition(startingPositionFen);
-generatePosition('rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2');
+generatePosition(startingPositionFen);
+// generatePosition('rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2');
+
+let selectedPiece = null;
 
 function generateBoard() {
     
@@ -41,7 +43,11 @@ function parseFenPiecePositions(fen) {
         }
         if (!isNaN(char)) {
             blankSpaceCounter = parseInt(char);
-            locationX += blankSpaceCounter;
+            // locationX += blankSpaceCounter;
+            for (var i = 0; i < blankSpaceCounter; i++) {
+                pieces.push(buildEmptySquare(locationX + "" + locationY));
+                locationX++;
+            }
             continue;
         }
         else if (isLowerCase(char)) {
@@ -60,7 +66,7 @@ function parseFenPiecePositions(fen) {
 
 function generatePosition(fen) {
     removeOldPieces();
-    console.log("position")
+    // console.log("position")
     let boardContainer = document.getElementById("board-container");
     let pieces = parseFenPiecePositions(fen);
     // console.log(pieces);
@@ -79,6 +85,87 @@ function removeOldPieces() {
     }
 }
 
+
+function handleClickOnSquare(square) {
+    if (square.classList.contains("empty")) {
+        handleClickOnValidMove(square);
+    }
+    else {
+        handleClickOnPiece(square);
+    }
+}
+
+
+/*
+the class list for a square should look as follows:
+(piece|blank) (<pieceName>|empty) square-<squareLocation>
+*/
+function handleClickOnValidMove(square) {
+    if (selectedPiece == null) { //TODO if piece cant move there removeHoverSquare also
+        removeHoverSquare();
+        return;
+    }
+    let selectedPieceClassList = selectedPiece.classList;
+    //update the empty square with the info from selectedPiece
+    square.classList.replace(square.classList[0], "piece"); //make sure the first class is piece
+    square.classList.replace(square.classList[1], selectedPieceClassList[1]); //replace the second class with the selected piece's pieceName
+
+    //update selectedPiece to be empty
+    selectedPieceClassList.replace(selectedPieceClassList[1], "empty");
+    selectedPieceClassList.replace("piece", "blank");
+    console.log(selectedPiece.classList);
+    selectedPiece = null;
+    removeHoverSquare();
+}
+
+function handleClickOnPiece(square) {
+    if (selectedPiece != null) {
+        // check if the 1st character of the 2nd class is the same for both pieces in which case they are the same color
+        if (selectedPiece.classList[1][0] === square.classList[1][0]) {
+            // remove previous hover squares
+            removeHoverSquare();
+            //add new hover square
+            selectedPiece = square;
+            square.classList.add("hover-square");
+            return;
+        }
+        else {
+            handleClickOnValidMove(square);
+            return;
+        }
+    }
+    // remove previous hover squares
+    removeHoverSquare();
+    //add new hover square
+    selectedPiece = square;
+    square.classList.add("hover-square");
+}
+
+function removeHoverSquare() {
+    hoverSquares = document.querySelectorAll(".hover-square");
+    if (hoverSquares.length > 0) {
+        // console.log(hoverSquares);
+        for (hoverSquare of hoverSquares) {
+            // console.log(hoverSquare);
+            hoverSquare.classList.remove("hover-square");
+        }
+    }
+}
+function isLowerCase(char) {
+    return char == char.toLowerCase();
+}
+
+function buildEmptySquare(pieceLocation) {
+
+    className = "blank empty square-";
+    className += pieceLocation;
+    let divAttrArr = [buildAttributeObject("class", className)];
+    let newDiv = buildNewElement("div", divAttrArr);
+    newDiv.addEventListener("click", function() {
+        handleClickOnSquare(newDiv);
+    });
+    return newDiv; 
+}
 function buildPieceDiv(pieceType, pieceColor, pieceLocation) {
     
     let className = "piece ";
@@ -89,29 +176,10 @@ function buildPieceDiv(pieceType, pieceColor, pieceLocation) {
     let divAttrArr = [buildAttributeObject("class", className)];
     let newDiv = buildNewElement("div", divAttrArr);
     newDiv.addEventListener("click", function() {
-        setHoverSquare(newDiv);
+        handleClickOnSquare(newDiv);
     });
     return newDiv; 
 }
-
-function setHoverSquare(square) {
-    // remove previous hover squares
-    hoverSquares = document.querySelectorAll(".hover-square");
-    if (hoverSquares.length > 0) {
-        // console.log(hoverSquares);
-        for (hoverSquare of hoverSquares) {
-            // console.log(hoverSquare);
-            hoverSquare.classList.remove("hover-square");
-        }
-    }
-    //add new hover square
-    square.classList.add("hover-square");
-}
-
-function isLowerCase(char) {
-    return char == char.toLowerCase();
-}
-
 
 function buildBoard() {
     //create the attribute objects for board
