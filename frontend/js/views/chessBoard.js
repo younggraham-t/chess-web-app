@@ -16,6 +16,8 @@ generatePosition(startingPositionFen);
 
 let selectedPiece = null;
 let previousMoveLocations = [];
+let currentLegalMoves = ['12-13', '12-14', '22-23', '22-24', '32-33', '32-34', '42-43', '42-44', '52-53', '52-54', '62-63', '62-64', '72-73', '72-74', '82-83', '82-84'];
+let validMovesForSelectedPiece = [];
 
 function generateBoard() {
     
@@ -89,18 +91,30 @@ function removeOldPieces() {
 
 
 function handleClickOnSquare(square) {
-    if (square.classList.contains("empty")) {
-        handleClickOnValidMove(square);
+    
+    if (selectedPiece != null) {
+        // console.log(square.classList[2].slice(7));
+        for (validMove of validMovesForSelectedPiece) {
+            if (validMove.includes(square.classList[2].slice(7))) {
+                handleClickOnValidMove(square);
+                return;
+            }
+        }
+        selectedPiece.classList.remove("hover-square");
+        selectedPiece = null;
+        return;
+      
     }
     else {
         handleClickOnPiece(square);
     }
+    console.log(selectedPiece);
 }
 
 
 /*
 the class list for a square should look as follows:
-(piece|blank) (<pieceName>|empty) square-<squareLocation>
+(piece|blank) (<pieceName>|empty) square-<squareLocation> (hover-square| )
 */
 function handleClickOnValidMove(square) {
     if (selectedPiece == null) { //TODO if piece cant move there removeHoverSquare also
@@ -127,6 +141,9 @@ function handleClickOnValidMove(square) {
 }
 
 function handleClickOnPiece(square) {
+    if (!square.classList.contains("piece")) {
+        return;
+    }
     if (selectedPiece != null) {
         if (square === selectedPiece) {
             selectedPiece.classList.remove("hover-square");
@@ -147,11 +164,23 @@ function handleClickOnPiece(square) {
             return;
         }
     }
-    // remove previous hover squares
+    // remove previous hover square
     removeHoverSquare(false);
     //add new hover square
     selectedPiece = square;
+    getValidMovesForSelectedPiece();
     square.classList.add("hover-square");
+}
+
+function getValidMovesForSelectedPiece() {
+    for (move of currentLegalMoves) {
+        // console.log(move);
+        // console.log(selectedPiece.classList[2])
+        if (selectedPiece.classList[2] == "square-" + move.slice(0,2)) {
+            validMovesForSelectedPiece.push(move);
+        }
+    }
+    // console.log(validMovesForSelectedPiece);
 }
 
 function removeHoverSquare(removeLastMove) {
