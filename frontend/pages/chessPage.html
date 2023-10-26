@@ -27,15 +27,15 @@
         <div class="center-panel">
 
             <div id="board-container"> 
-                
-                <div class="piece br square-18"></div> 
+                <!-- <div class="board-background"></div>  -->
+                <!-- <div class="piece br square-18"></div> 
                 <div class="piece wr square-28"></div>
                 <div class="piece br square-38"></div> 
                 <div class="piece wr square-48"></div>
-                <div class="piece wk square-77"></div>
+                <div class="piece wk square-77"></div> -->
 
             </div>
-            <script src="../js/models/generateChessBoard.js"></script>
+            <script src="../js/views/chessBoard.js"></script>
                 <!-- this is a proof of concept I will actually generate the board with javascript as above  -->
                 <!-- <svg class="board" width="640" height="640">
                      
@@ -43,6 +43,8 @@
                     <rect x="0" y="0" width="80" height="80" class="light-square"/>
                 </svg> 
             </div>   -->
+            <button onclick="generatePosition('rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2')">position 1</button>
+            <button onclick="generatePosition('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1')">startingPosition</button>
         </div>
     </main>
 </body>
