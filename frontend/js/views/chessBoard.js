@@ -13,6 +13,9 @@ generateBoard()
 generatePosition(startingPositionFen);
 // generatePosition('rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2');
 
+generatePosition(startingPositionFen);
+// generatePosition('rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2');
+
 let selectedPiece = null;
 
 function generateBoard() {
@@ -124,7 +127,7 @@ function handleClickOnPiece(square) {
         if (selectedPiece.classList[1][0] === square.classList[1][0]) {
             // remove previous hover squares
             removeHoverSquare();
-            //add new hover square
+            //add new hover square 
             selectedPiece = square;
             square.classList.add("hover-square");
             return;
