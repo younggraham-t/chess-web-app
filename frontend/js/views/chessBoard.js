@@ -16,7 +16,7 @@ generatePosition(startingPositionFen);
 
 let selectedPiece = null;
 let previousMoveLocations = [];
-let currentLegalMoves = ['12-13', '12-14', '22-23', '22-24', '32-33', '32-34', '42-43', '42-44', '52-53', '52-54', '62-63', '62-64', '72-73', '72-74', '82-83', '82-84'];
+let currentLegalMoves = ['54-55','12-13', '12-14', '22-23', '22-24', '32-33', '32-34', '42-43', '42-44', '52-53', '52-54', '62-63', '62-64', '72-73', '72-74', '82-83', '82-84', '21-33', '21-13', '71-63', '71-83'];
 let validMovesForSelectedPiece = [];
 
 function generateBoard() {
@@ -91,33 +91,33 @@ function removeOldPieces() {
 
 
 function handleClickOnSquare(square) {
-    
+
     if (selectedPiece != null) {
         // console.log(square.classList[2].slice(7));
-        for (validMove of validMovesForSelectedPiece) {
-            if (validMove.includes(square.classList[2].slice(7))) {
-                handleClickOnValidMove(square);
-                return;
-            }
+        if (square.classList.contains("empty")) {
+            for (validMove of validMovesForSelectedPiece) {
+                if (validMove.includes(square.classList[2].slice(7))) { //classList[2] is the squareName. slice(7) is the number of the square
+                    handleClickOnValidMove(square);
+                    // removeHighlightedValidMoves();
+                    return;
+                }
+            }    
         }
-        selectedPiece.classList.remove("hover-square");
-        selectedPiece = null;
-        return;
-      
     }
-    else {
-        handleClickOnPiece(square);
-    }
-    console.log(selectedPiece);
+    
+    handleClickOnPiece(square);
+    
+    // console.log(selectedPiece);
+    // removeHighlightedValidMoves();
 }
 
 
 /*
 the class list for a square should look as follows:
-(piece|blank) (<pieceName>|empty) square-<squareLocation> (hover-square| )
+(piece|blank) (<pieceName>|empty) square-<squareLocation> hover-square? valid-move?
 */
 function handleClickOnValidMove(square) {
-    if (selectedPiece == null) { //TODO if piece cant move there removeHoverSquare also
+    if (selectedPiece == null) { 
         removeHoverSquare(false);
         return;
     }
@@ -138,6 +138,7 @@ function handleClickOnValidMove(square) {
     previousMoveLocations.push(selectedPiece);
     selectedPiece = null;
     removeHoverSquare(false);
+    removeHighlightedValidMoves();
 }
 
 function handleClickOnPiece(square) {
@@ -148,6 +149,7 @@ function handleClickOnPiece(square) {
         if (square === selectedPiece) {
             selectedPiece.classList.remove("hover-square");
             selectedPiece = null;
+            removeHighlightedValidMoves();
             return;
         }
         // check if the 1st character of the 2nd class is the same for both pieces in which case they are the same color
@@ -157,6 +159,7 @@ function handleClickOnPiece(square) {
             //add new hover square 
             selectedPiece = square;
             square.classList.add("hover-square");
+            getValidMovesForSelectedPiece();
             return;
         }
         else {
@@ -170,37 +173,65 @@ function handleClickOnPiece(square) {
     selectedPiece = square;
     getValidMovesForSelectedPiece();
     square.classList.add("hover-square");
+    // removeHighlightedValidMoves();
 }
 
 function getValidMovesForSelectedPiece() {
+    removeHighlightedValidMoves();
     for (move of currentLegalMoves) {
         // console.log(move);
         // console.log(selectedPiece.classList[2])
-        if (selectedPiece.classList[2] == "square-" + move.slice(0,2)) {
+        let squareString = "square-" + move.slice(0,2);
+        if (selectedPiece.classList[2] == squareString) {
+            // console.log("square-" + move.slice(3));
+            // console.log(document.querySelectorAll("." + "square-" + move.slice(3)));
+            for (newMove of document.querySelectorAll("." + "square-" + move.slice(3))) {
+                // console.log(newMove);
+                newMove.classList.add("valid-move");
+            }
             validMovesForSelectedPiece.push(move);
         }
+        
     }
+
     // console.log(validMovesForSelectedPiece);
 }
 
+function removeHighlightedValidMoves() {
+    // console.log(validMovesForSelectedPiece);
+    if (validMovesForSelectedPiece.length > 0) {
+        for(validMove of validMovesForSelectedPiece) {
+            // console.log("square-" + validMove.slice(3));
+            let squareString = "square-" + validMove.slice(3);
+            document.querySelector("." + squareString).classList.remove("valid-move");
+        }
+        validMovesForSelectedPiece = [];
+    }
+}
 function removeHoverSquare(removeLastMove) {
+    
     hoverSquares = document.querySelectorAll(".hover-square");
     if (hoverSquares.length > 0) {
         for (hoverSquare of hoverSquares) {
             //remove all hover-squares
+
             if (removeLastMove) {
+                // console.log(hoverSquare);
+                            // console.log(selectedPiece);
                 hoverSquare.classList.remove("hover-square");
                 previousMoveLocations = [];
             }
             //only remove the hover square that highlights the currently selected piece
-            else {
-                if (selectedPiece === hoverSquare) {
+            else if (selectedPiece === hoverSquare) {
+                    // console.log(hoverSquare);
+                    // console.log(selectedPiece);
                     hoverSquare.classList.remove("hover-square");
-                }
             }
         }
     }
+    // console.log(hoverSquares);
 }
+
 function isLowerCase(char) {
     return char == char.toLowerCase();
 }

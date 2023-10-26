@@ -113,8 +113,12 @@
 }
 
 .hover-square {
-    background-color: rgba(219, 90, 47, 0.6);
+    background-color: rgba(219, 205, 47, 0.6);
     z-index: 1;
+}
+
+.valid-move {
+    background-color: rgba(47, 219, 202, 0.6);
 }
 
 .bk {
