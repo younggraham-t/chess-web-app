@@ -1,5 +1,9 @@
+class Piece {
+
+}
+
 class Board {
-    board = Array(8).fill(Array(8).fill(0));
+    board: Piece[][] = Array(8).fill(Array(8).fill(Piece));
 }
 
 console.log(new Board());
