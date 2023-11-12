@@ -17,6 +17,6 @@ app.listen(port, () => {
 // app.post("/playerMove", boardController.handlePlayerMoveAPI);
 app.get("/user/:id", userController.getUserAPI);
 app.get("/users", userController.getUserListAPI);
-// app.post("/user/", userController.createUser);
-// app.put("/user/:id", userController.updateUser);
-// app.delete("/user/:id", userController.deleteUser);
+app.post("/user/", userController.createUserAPI);
+app.put("/user/:id", userController.updateUserAPI);
+app.delete("/user/:id", userController.deleteUserAPI);

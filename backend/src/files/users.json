@@ -1,1 +1,1 @@
-[{"userId":1, "userName":"gyoung", "userPassword":"password1","userFullName":"Graham Young", "userRole":"admin"}]
+[{"userId":1,"userName":"gyoung","userPassword":"password1","userFullName":"Graham Young","userRole":"admin","userBirthDate":"2000-10-09T00:00:00.000Z"},{"userId":2,"userName":"jbob1","userPassword":"password2","userFullName":"Joe Bob","userRole":"member","_userBirthDate":"1998-02-24T00:00:00.000Z"}]
