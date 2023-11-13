@@ -9,7 +9,7 @@ header {
     display: flex; 
     justify-content: center;
     align-items: center;
-    min-height: 100px;
+    min-height: 50px;
 }
 footer {
     /* background: yellow; */
@@ -21,7 +21,7 @@ footer {
 main {
     display:flex;
     min-height: 600px;
-    flex-wrap: wrap;
+    flex-wrap:nowrap;
     /* border-color: aliceblue;
     border-style: solid; */
 }
@@ -63,10 +63,10 @@ main {
 
 @media (max-width:1000px) {
     .left-panel {
-        flex-basis: 100%;
+        flex-basis: 8%;
     }
     .center-panel {
-        flex-basis: 100%;
+        flex-basis: 85%;
     }
     .right-panel {
         flex-basis: 100%;
@@ -74,9 +74,9 @@ main {
      
 }
 
-@media (max-width:500px) {
+@media (max-width:650px) {
     .left-panel {
-        flex-basis: 100%;
+        display: none;
     }
     .center-panel {
         flex-basis: 100%;

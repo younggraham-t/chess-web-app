@@ -7,9 +7,15 @@ userList = getUserList();
 
 
 function createUser(userName: string, userPassword: string, userRole?: string, userFullName?: string, userBirthDate?: string) {
+    for (let user of userList) { //make sure there aren't duplicate usernames
+        if (user.userName == userName) {
+            return null;
+        }
+    }
     let newUser = new user.User(userList.length + 1, userName, userPassword, userRole, userFullName, userBirthDate);
     userList.push(newUser);
     userFileAccess.writeUsers(userList); 
+    return newUser;
 }
 
 function getUser(userId: number) {

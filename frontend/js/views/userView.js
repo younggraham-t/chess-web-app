@@ -1,0 +1,7 @@
+function hideUserPopup() {
+
+}
+
+function displayUserNameTaken() {
+    
+}
