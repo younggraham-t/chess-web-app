@@ -3,6 +3,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
+    
+    <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/loginStyles.css"> 
     <title>User Page</title>
     <script src="../js/constants/urlConstants.js"></script>
@@ -38,7 +40,7 @@
             </form> 
 
             
-            <button onclick="addUser('bobjoe2', 'password123', 'member', 'Bob Joe', '2000-06-06')">addUser</button> 
+            <button onclick="showUserPopup()">Create Account</button>
         </div> 
 
         <aside class="right-panel">
@@ -48,24 +50,32 @@
 
     <section id="newUserPopup" class="modal hidden">
         <div class="flex">
-            <h2 id="popupTitle">Add a Student</h2>
-            <button class="btn-close" onClick="hideUserPopup()">⨉</button>
+            <h2 id="popupTitle">Create Account</h2>
+            <button class="btn-close" onClick="hideUserPopup()">x</button>
         </div>
         <div>
         <form id="userForm" action="javascript:submitUser()">
-            <input type="hidden" id="userName"/>
+            <input type="hidden" id="userId"/>
+            
             <div class="formField">
-              <input type="text" id="studentName" placeholder="Enter Name"/>
+              <input type="text" id="userName" placeholder="Username" required/>
+            </div>
+            <p id="userNameTakenMessage" class="error-message hidden">Username is taken. Enter a different Username.</p>
+            <div class="formField">
+                <input type="password" id="userPassword" placeholder="Password" required/>
             </div>
             <div class="formField">
-                <label for="studentGradYear">Graduation Year</label>
-                <select id="studentGradYear" >
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
+                <input type="text" id="userFullName" placeholder="Full Name (Optional)"/>
+            </div>
+            <div class="formField">
+                <label for="userRole">User Role</label>
+                <select id="userRole">
+                    <option value="member">Member</option>
                 </select>
+            </div>
+            <div class="formField">
+                <label for="userBirthDate">Birthdate:</label>
+                <input type="date" id="userBirthDate"/>
             </div>
             <div class="formField">
               <button class="btn">Submit</button>

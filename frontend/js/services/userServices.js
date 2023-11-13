@@ -39,7 +39,7 @@ async function addUser(userName, userPassword, userRole, userFullName, userBirth
         hideUserPopup();
    }
    else {
-        displayUserNameTaken();
+        toggleUserNameTaken(true);
    }
 }
 
@@ -48,6 +48,9 @@ async function updateUser(id, userName, userPassword, userRole, userFullName, us
     let response = await makeAPICall(createUserURL, "post", id, newUser);
     if (response) {
         hideUserPopup();
+    }
+    else {
+        displayUserUpdateFailed();
     }
 }
 

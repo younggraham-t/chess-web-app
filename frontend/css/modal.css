@@ -1,0 +1,99 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 450px;
+  padding: 1.3rem;
+  min-height: 250px;
+  position: fixed; /* Change to fixed */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  background-color: #353535;
+  border: 1px solid aliceblue;
+  border-radius: 15px;
+  z-index: 2;
+  transform: translate(-50%, -50%); /* Center the modal */
+}
+
+.modal .flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal input {
+  padding: 0.7rem 1rem;
+  border: 1px solid aliceblue;
+  border-radius: 5px;
+  font-size: 0.9em;
+  width:300px;
+}
+
+.formField {
+    margin-bottom:20px;
+    text-align:center;
+}
+
+.formField select {
+    height:45px;
+    width:175px;
+}
+
+
+.modal p {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0.4rem 0 0.2rem;
+}
+.modal .error-message {
+  color:red;
+  text-align:center; 
+}
+button {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.btn-open {
+  /*position: absolute;*/
+  bottom: 150px;
+}
+
+.btn-close {
+  transform: translate(10px, -20px);
+  padding: 0.5rem 0.7rem;
+  color: #353535;
+  font-size: large;
+  background: aliceblue;
+  border-radius: 50%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
