@@ -1,12 +1,12 @@
-body {
+/* body {
     margin: 0;
     padding: 0;
     background-image: url('https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg');
     background-size: cover;
     /*background-repeat: no-repeat;
     */
-    font-family: Arial, sans-serif;
-}
+    /* font-family: Arial, sans-serif;
+} */ */
 
 .login-container {
     position: absolute;

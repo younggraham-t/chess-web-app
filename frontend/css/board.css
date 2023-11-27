@@ -18,6 +18,12 @@
 img {
     background-color: transparent;
 }
+#board div div div div div {
+    background-color: transparent;
+    color: #333;
+    
+}
+
 .board-background {
     /* display: flex; */
     position: absolute;
@@ -42,6 +48,12 @@ img {
     /* padding-bottom: 100%; */
 }
 
+.legal-move-highlight {
+    box-shadow: inset 0 0 3px 3px rgba(232, 70, 0, 0.895);
+}
+
+
+
 @media (max-height:850px) {
     #board-container {
         max-width: 488px;
@@ -56,12 +68,11 @@ img {
     }
 }
 
-/* @media (max-width:500px) {
-    .board-container {
+/*
 
-    }
-} */
+BELOW HERE IS USED FOR chessBoard.js WHICH IS DEPRECATED
 
+*/
 
 .dark {
     fill:rgb(114, 181, 81);

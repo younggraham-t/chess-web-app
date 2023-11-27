@@ -26,8 +26,13 @@ async function getUserList() {
 
 async function getUser(id) {
     let user = await makeAPICall(getUserURL, "get", id);
-    console.log(user);
-    return user;
+    if (user) {
+        return user;
+    } 
+    else {
+        alert("User not found");
+    }
+    
 }
 
 async function addUser(userName, userPassword, userRole, userFullName, userBirthDate) {
@@ -54,8 +59,11 @@ async function updateUser(id, userName, userPassword, userRole, userFullName, us
     }
 }
 
-async function deleteUser(id) {
-    let deleteResponse = await makeAPICall(deleteUserURL,"delete",id);
-    if (deleteResponse) {
-    }
-}
+// this function is commented since it is a potential security issue
+// async function deleteUser(id) {
+//     confirm("Are you sure you want to delete user with id:" + id);
+//     let deleteResponse = await makeAPICall(deleteUserURL,"delete",id);
+//     if (deleteResponse) {
+//         alert("Deleted User:" + id);
+//     }
+// }
