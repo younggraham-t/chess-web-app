@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const boardController = require('./controllers/boardController.ts');
-const userController = require('./controllers/userController.ts');
+// const boardController = require('./controllers/boardController.ts');
+const userController = require('./controllers/userController');
 const app = express();
 const port = 9039;
 

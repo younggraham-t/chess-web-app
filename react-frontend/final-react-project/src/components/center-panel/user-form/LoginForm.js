@@ -9,7 +9,7 @@ function LoginForm() {
         <form action={doLogin()}method="post">
         <input id="username" type="text" name="username" placeholder="Username"/>
         <input id="password" type="password" name="password" placeholder="Password"/>
-        <p id="message" class="loginError hidden">Invalid Username/Password</p>
+        <p id="message" className="loginError hidden">Invalid Username/Password</p>
         <input type="submit" value="Login"/>
         </form> 
 
