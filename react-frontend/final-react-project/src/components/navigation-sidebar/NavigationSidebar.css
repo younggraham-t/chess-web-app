@@ -1,0 +1,24 @@
+.navigation-sidebar {
+    /* background: red; */
+    /* display: flex;  */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-basis: 19%;
+    min-width: 200px;
+    border-color: aliceblue;
+    border-style: solid;
+}
+
+@media (max-width:1000px) {
+    .navigation-sidebar {
+        flex-basis: 8%;
+    }
+     
+}
+
+@media (max-width:650px) {
+    .navigation-sidebar {
+        display: none;
+    }
+}
